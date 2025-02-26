@@ -1,18 +1,22 @@
 <ion-content [fullscreen]="true">
-    
-    <ion-row class="ion-padding">
-        <ion-col size="12" size-lg="6">
-            <!-- <ion-label class="ion-padding">{{this.pokemon.name}}</ion-label>
-            <ion-label class="ion-padding">{{this.pokemon.power}}</ion-label> -->
-            <ion-item class="ion-padding">
-                <ion-input label="Nome do Pokemon" placeholder="Nome do Pokemon" labelPlacement="floating" [(ngModel)]="this.pokemon.name" ></ion-input>
-            </ion-item>
-            <ion-item class="ion-padding">
-                <ion-input label="Poder do Pokemon" placeholder="Poder do Pokemon" labelPlacement="floating" [(ngModel)]="this.pokemon.power" ></ion-input>
-            </ion-item>
-            <ion-item color="none" lines="none" expand="full">
-                <ion-button (click)="enviar()" size="medium" type="submit" color="primary" expand="full">Envir</ion-button>
-            </ion-item>
+
+    <ion-row>
+
+        <ion-col size="12" size-xl="3" *ngFor="let pais of this.dados">
+            <!-- *ngFor =  -->
+            <ion-card>
+                <ion-card-content>
+                    <ion-row>
+                        <ion-col size="4">
+                            <img src="{{pais.flags.svg}}">
+                        </ion-col>
+                        <ion-col size="8">
+                            <h2>{{pais.name.common}}</h2>
+                            <h4>{{pais.name.official}}</h4>
+                        </ion-col>
+                    </ion-row>
+                </ion-card-content>
+            </ion-card>
         </ion-col>
     </ion-row>
 

@@ -1,18 +1,58 @@
 <ion-content [fullscreen]="true">
-    
-    <ion-row class="ion-padding">
-        <ion-col size="12" size-lg="6">
-            <!-- <ion-label class="ion-padding">{{this.pokemon.name}}</ion-label>
-            <ion-label class="ion-padding">{{this.pokemon.power}}</ion-label> -->
-            <ion-item class="ion-padding">
-                <ion-input label="Nome do Pokemon" placeholder="Nome do Pokemon" labelPlacement="floating" [(ngModel)]="this.pokemon.name" ></ion-input>
-            </ion-item>
-            <ion-item class="ion-padding">
-                <ion-input label="Poder do Pokemon" placeholder="Poder do Pokemon" labelPlacement="floating" [(ngModel)]="this.pokemon.power" ></ion-input>
-            </ion-item>
-            <ion-item color="none" lines="none" expand="full">
-                <ion-button (click)="enviar()" size="medium" type="submit" color="primary" expand="full">Envir</ion-button>
-            </ion-item>
+
+    <ion-row class="ion-justify-content-center">
+        <ion-col size="12" size-xl="6">
+            <!-- Dados do Perfil -->
+
+            <ion-row class="ion-padding">
+                <ion-col size="4">
+                    <img src="https://i.pinimg.com/736x/9e/cf/29/9ecf297929ba080d19f4c8bd34a0d036.jpg" alt="Foto 3X4"
+                        style="width: 100%;">
+                </ion-col>
+                <ion-col size="8">
+                    <ion-item lines="none">
+                        <ion-label>
+                            <h1>Lucas Wagner de Melo Fogaça</h1>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item lines="none">
+                        <ion-label>
+                            <h4>Terminando Técnico em Desenvolvimento de Sistemas</h4>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item lines="none">
+                        <ion-label>
+                            <h4>@lucaswmf</h4>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item lines="none">
+                        <ion-label>
+                            <h4>Português</h4>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item lines="none">
+                        <ion-label>
+                            <h4>Tatuí/SP</h4>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item lines="none">
+                        <ion-label>
+                            <h4>desde de Março de 2025</h4>
+                        </ion-label>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-item lines="none">
+
+                </ion-item>
+            </ion-row>
         </ion-col>
     </ion-row>
 

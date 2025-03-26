@@ -4,131 +4,128 @@
         <ion-col size="12" size-xl="6">
             <!-- Dados do Perfil -->
 
+            <ion-row>
+                <ion-col style="height: 100%;" size="4">
+                    <ion-img src="https://i.pinimg.com/736x/9e/cf/29/9ecf297929ba080d19f4c8bd34a0d036.jpg"
+                        alt="Foto 3X4" style="width: 100%;"></ion-img>
+                </ion-col>
+                <ion-col size="8">
+                    <ion-item lines="none">
+                        <ion-label>
+                            <h1>{{ this.perfil.nome }}</h1>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item lines="none">
+                        <ion-label>
+                            <h4>{{ this.perfil.profissao }}</h4>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item lines="none">
+                        <ion-label>
+                            <h4>{{ this.perfil.nome_usuario }}</h4>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item lines="none">
+                        <ion-label>
+                            <h4>{{ this.perfil.idioma }}</h4>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item lines="none">
+                        <ion-label>
+                            <h4>{{ this.perfil.localidade }}</h4>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item lines="none">
+                        <ion-label>
+                            <h4>{{ this.perfil.data_inicio }}</h4>
+                        </ion-label>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <!-- Título Biografia -->
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item lines="none">
+                        <ion-label>
+                            <h2>BIOGRAFIA</h2>
+                        </ion-label>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <!-- Descrição da Biografia -->
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item lines="none">
+                        <p>{{ this.perfil.biografia }}</p>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <!-- Divider -->
+            <ion-row>
+                <ion-col size="12" class="text-center">
+                    <ion-item-divider></ion-item-divider>
+                </ion-col>
+            </ion-row>
+
+            <!-- estatisticas -->
+            <ion-row>
+                <ion-col size="4" class="text-center">
+                    <ion-item lines="none">
+                        <h3>{{ this.perfil.estatisticas.curtidas }}</h3>
+                    </ion-item>
+
+                    <ion-item lines="none">
+                        <h3>Curtidas</h3>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col size="4" class="text-center">
+                    <ion-item lines="none">
+                        <h3>{{ this.perfil.estatisticas.seguindo }}</h3>
+                    </ion-item>
+
+                    <ion-item lines="none">
+                        <h3>Seguidores</h3>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col size="4" class="text-center">
+                    <ion-item lines="none">
+                        <h3>{{ this.perfil.estatisticas.amigos }}</h3>
+                    </ion-item>
+
+                    <ion-item lines="none">
+                        <h3>Amigos</h3>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" class="text-center">
+                    <ion-item-divider></ion-item-divider>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item lines="none">
+                        <ion-label>
+                            <h2>Minhas Postagens</h2>
+                        </ion-label>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
             <ng-container *ngFor="let postagem of this.perfil.postagens">
                 <ion-row>
-                    <ion-col size="4">
-                        <img src="https://i.pinimg.com/736x/9e/cf/29/9ecf297929ba080d19f4c8bd34a0d036.jpg" alt="Foto 3X4"
-                            style="width: 100%;">
-                    </ion-col>
-                    <ion-col size="8">
-                        <ion-item lines="none">
-                            <ion-label>
-                                <h1>Lucas Wagner de Melo Fogaça</h1>
-                            </ion-label>
-                        </ion-item>
-    
-                        <ion-item lines="none">
-                            <ion-label>
-                                <h4>Terminando Técnico em Desenvolvimento de Sistemas</h4>
-                            </ion-label>
-                        </ion-item>
-    
-                        <ion-item lines="none">
-                            <ion-label>
-                                <h4>@lucaswmf</h4>
-                            </ion-label>
-                        </ion-item>
-    
-                        <ion-item lines="none">
-                            <ion-label>
-                                <h4>Português</h4>
-                            </ion-label>
-                        </ion-item>
-    
-                        <ion-item lines="none">
-                            <ion-label>
-                                <h4>Tatuí/SP</h4>
-                            </ion-label>
-                        </ion-item>
-    
-                        <ion-item lines="none">
-                            <ion-label>
-                                <h4>desde de Março de 2025</h4>
-                            </ion-label>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-    
-                <!-- Título Biografia -->
-                <ion-row>
-                    <ion-col size="12">
-                        <ion-item lines="none">
-                            <ion-label>
-                                <h2>Biografia</h2>
-                            </ion-label>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-    
-                <!-- Descrição da Biografia -->
-                <ion-row>
-                    <ion-col size="12">
-                        <ion-item lines="none">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, aspernatur soluta dolor enim
-                                consequatur molestiae, nemo ut, vero assumenda suscipit unde quod culpa ratione. Consequatur
-                                vitae incidunt minus placeat neque?</p>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <!-- Divider -->
-                <ion-row>
-                    <ion-col size="12" class="text-center">
-                        <ion-item-divider></ion-item-divider>
-                    </ion-col>
-                </ion-row>
-    
-                <!-- estatisticas -->
-                <ion-row>
-                    <ion-col size="4" class="text-center">
-                        <ion-item lines="none">
-                            <h3>45.6K</h3>
-                        </ion-item>
-    
-                        <ion-item lines="none">
-                            <h3>Curtidas</h3>
-                        </ion-item>
-                    </ion-col>
-    
-                    <ion-col size="4" class="text-center">
-                        <ion-item lines="none">
-                            <h3>45.6K</h3>
-                        </ion-item>
-    
-                        <ion-item lines="none">
-                            <h3>Seguidores</h3>
-                        </ion-item>
-                    </ion-col>
-    
-                    <ion-col size="4" class="text-center">
-                        <ion-item lines="none">
-                            <h3>45.6K</h3>
-                        </ion-item>
-    
-                        <ion-item lines="none">
-                            <h3>Seguidores</h3>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col size="12" class="text-center">
-                        <ion-item-divider></ion-item-divider>
-                    </ion-col>
-                </ion-row>
-    
-                <ion-row>
-                    <ion-col size="12">
-                        <ion-item lines="none">
-                            <ion-label>
-                                <h2>Minhas Postagens</h2>
-                            </ion-label>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row style="height: 100%;">
                     <ion-col>
-                        <ion-img src="{{ postagem.foto }}"
-                            alt="{{ postagem.nome }}"></ion-img>
+                        <ion-img src="{{ postagem.foto }}" alt="{{ postagem.nome }}"></ion-img>
                     </ion-col>
                     <ion-col size="8" style="height: 100%;">
                         <ion-item lines="none">
@@ -137,7 +134,7 @@
                                 <h2>{{ postagem.nome_usuario }} - {{ postagem.data }}</h2>
                             </ion-label>
                         </ion-item>
-                        <ion-item lines="none" height: 100%>
+                        <ion-item lines="none" style="height: 100%">
                             <ion-label>
                                 <p style="height: 100%;">{{ postagem.texto }}</p>
                             </ion-label>

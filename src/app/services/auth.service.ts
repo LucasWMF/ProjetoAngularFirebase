@@ -53,10 +53,11 @@ export class AuthenticateService {
         signInWithEmailAndPassword(this.auth, email, password)
         .then((response: any) => {
             console.log(response.user);
+            this._router.navigate(['/'])
             this._message.show('Login Realizado com Sucesso!');
         })
         .catch((_: any) => {
-            this.showErro(_, email, password);
+            this._message.show('Ops! Houve um problema Verifique Email e a Senha');
         })
         .finally(() => {
             this.isLoading = false;

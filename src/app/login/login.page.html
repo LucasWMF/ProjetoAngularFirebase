@@ -1,0 +1,26 @@
+<ion-content [fullscreen]="true" class="center">
+
+  <ion-row class="center">
+    <ion-col size="4">
+      <ion-card class="vh40 center column">
+        <ion-item>
+          <ion-input label="E-mail" [(ngModel)]="this.user.email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Senha" [(ngModel)]="this.user.password"></ion-input>
+        </ion-item>
+        <!-- <ion-item>
+          <ion-input label="Confirmar senha" [(ngModel)]="this.user.confirm_password"></ion-input>
+        </ion-item> -->
+        <ion-item>
+          <ion-button color="primary" (click)="acessar()">Logar
+  
+          </ion-button>
+        </ion-item>
+      </ion-card>
+    </ion-col>
+    <ion-col size="4" class="bg-image"></ion-col>
+  </ion-row>
+  
+  </ion-content>
+  

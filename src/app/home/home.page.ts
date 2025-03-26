@@ -14,17 +14,17 @@ export class HomePage {
 
   perfil: any = {
     foto: null,
-    nome: null,
-    profissao: null,
-    nome_usuario: null,
-    idioma: null,
-    localidade: null,
-    data_inicio: null,
-    biografia:null,
+    nome: 'Lucas Wagner de Melo Fogaça',
+    profissao: 'Terminando Técnico em Desenvolvimento de Sistemas',
+    nome_usuario: '@lucaswmf',
+    idioma: 'Português',
+    localidade: 'Tatuí/SP',
+    data_inicio: 'desde de Março de 2025',
+    biografia:'Só sei que nada sei mas sei que também compreendo e sei que nada sei isso é aquilo e aquilo é isso o mineiro diz que é Trem mas eu não entendo se é Maria Fumaça ou não, não entendo oq falam povo esquisito :D',
     estatisticas: {
-      curtidas: 0,
-      seguindo: 0,
-      amigos: 0
+      curtidas: 12,
+      seguindo: 360,
+      amigos: 75
     },
     postagens: [
         {
@@ -63,7 +63,7 @@ export class HomePage {
           "data": "12/03/2025 16:10"
         }
       ]          
-  }
+    }
 
   constructor(
    ){ }

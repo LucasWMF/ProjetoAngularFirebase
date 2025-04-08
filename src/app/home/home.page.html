@@ -1,19 +1,58 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Últimas Noticias</ion-title>
+    </ion-toolbar>
+</ion-header>
+
 <ion-content [fullscreen]="true">
-    
-    <ion-row class="ion-padding">
-        <ion-col size="12" size-lg="6">
-            <!-- <ion-label class="ion-padding">{{this.pokemon.name}}</ion-label>
-            <ion-label class="ion-padding">{{this.pokemon.power}}</ion-label> -->
-            <ion-item class="ion-padding">
-                <ion-input label="Nome do Pokemon" placeholder="Nome do Pokemon" labelPlacement="floating" [(ngModel)]="this.pokemon.name" ></ion-input>
-            </ion-item>
-            <ion-item class="ion-padding">
-                <ion-input label="Poder do Pokemon" placeholder="Poder do Pokemon" labelPlacement="floating" [(ngModel)]="this.pokemon.power" ></ion-input>
-            </ion-item>
-            <ion-item color="none" lines="none" expand="full">
-                <ion-button (click)="enviar()" size="medium" type="submit" color="primary" expand="full">Envir</ion-button>
-            </ion-item>
+
+    <ion-row>
+        <ion-col size="4" size-sl="2">
+            <ion-card>
+                <ion-item style="display:flex; flex-direction: row; gap: 10px;">
+                    <img src="data:image/jpeg;base64,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"
+                        alt="">
+                    <ion-label style="white-space: pre-wrap; font-size: 1.5rem; margin-left: 1rem;">Trump diz que China
+                        quer fazer acordo e que espera ligação: 'Vai acontecer'</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-button color="secondary">Saiba Mais</ion-button>
+                </ion-item>
+            </ion-card>
+        </ion-col>
+        <ion-col size="4" size-sl="2">
+            <ion-card>
+                <ion-item style="display:flex; flex-direction: row; gap: 10px;">
+                    <img src="data:image/jpeg;base64,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"
+                        alt="">
+                    <ion-label style="white-space: pre-wrap; font-size: 1.5rem; margin-left: 1rem;">Trump diz que China
+                        quer fazer acordo e que espera ligação: 'Vai acontecer'</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-button color="secondary">Saiba Mais</ion-button>
+                </ion-item>
+            </ion-card>
+        </ion-col>
+        <ion-col size="4" size->
+            <ion-card>
+                <ion-item style="display:flex; flex-direction: row; gap: 10px;">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAFwAXAMBIgACEQEDEQH/xAAcAAACAwADAQAAAAAAAAAAAAAEBQIDBgABBwj/xAA6EAACAQMDAQUFBAgHAAAAAAABAgMABBEFEiExBhMiQVEUYXGBkSMyobEHQkNSssHR8RUzYnKC4fD/xAAZAQACAwEAAAAAAAAAAAAAAAABBAIDBQD/xAAhEQACAgICAgMBAAAAAAAAAAAAAQIRAyEEEjFBEyJhBf/aAAwDAQACEQMRAD8AyMVlNdTCOCIu5OAqjmtt2e7BnAm1gbc/sVby95HSjey+nQ6dKZJvHctxk9FHoK1yTBjz5elKl7K7eztbKFY7eCNEUYUBQMVaOT95cn0FWb0Yg45rjMgPJXNBhIsrEYHNQKkclcn0ziuSXCgdVqlrlT55NAOy3KHqjConB4UHHxIoWS5jjPjYDP1qn20SA7SMeooWHq2V6tbRyxskrDYQcr/asHe2lrDDK0Uruy4C5G3B9Pzr0e0aOdWUkHA86wnaS3a2vO5VcRjkf++lGge6ELFlYAA81B3ZWxtNH7DwStcI55QVwTaWoeEqsjBiFADjzpmtxHGg5yfQUh7x1ZUYdAMN50VIzAKc5+Fc9BiuwzbUEU4OT8TUJNUUjCp9KRXMyJ4pHK+gxXUV3CBy5PwX+tQ7F3xoeifeN3QepOAKHk1AKxEZLn3DAFL/AGlpvCm4r76kiheWY0LJxxL2XPuuDuYk+tchHs5BAI9RV8ABXduCr+dVlkdwIpDkeXlUXZO0tB9k3du7Z8J8qT62i3LFsbiDj4UX3xjY7vNfxoGwm764dTyWJ+VWpiuSO2xaLNiOlVNZnPStMsA9BVbQDPSp9RfuLtSZopUI4Bq+KbfC2eWxxVWqiWaNG2YWNj4vdQdvPzsX1wTQemXYtpBSRGfPeZbnoOKs9kiiHEyoT5PgVRPcm1gYgnOazUsgvpGaeVnIzhRlmb5Dp8yKqSsbto080xgHEiN64FQS7G87juGOn/VY2Dv7jPsNndRqM7WmUqDj05I/Gtp2fto5bIOy/aEYJPlRaonCakgKXU5bxu6RtkYOMjr8qjHeW0Vx3FvcxyTj70K5YgeZ3dM9fpU20aKFnlk3SozEsOmKZaaYfaS9naRq7jDy7ccfGimqIO70XS7u6ViCDjxe6grb7GTCZLscDAp1OsZU8DJ44FAW8JGoKANw+9tqESE46HSJlFOMZAqtkweaYQWd5J96MIPeaKXR2YZeQZ9wpjvEzaZkdZRn0wm1lxKh3AL5+6kFs8ivC0oVe8PhA4pmOzkiHK3Mw/5GoXOllbq3LruMBEgAHXrQmvY5xpJrqd3VuLkiInIz0x099dIJrdVjt7Nlx02qCD9KqmldJt69OlGQTqq4JB9c1RdDcVaBJ47kqZrobAv3YwefnRegS7pn5wnpVOoTqImJICmlVnrlnpLezzvtkkG7xjHXyo7ZKqRpNQkFqQHJ2MeDip21wjAZOfdSiLWpdXaKG1thNCSRJIThVH8/lUL60vLNjJZN3i9TE/8AI0KBodu+X4456UZpwVriIYO/vAAceWelZvTr83cQbYyEEgj3+lbDsxbRyyvcyOzFMBEP3VJHX40ForytKNmnzg9KmJVxyKgEyPSomMeuaJmmYeVVl7rqRQmqQGS3MsabpowSoHU0vbtboVopFzdCSQcHuV3/AIjikup/pJsYsrY2ck3+qYhR9BTeHFkyR2gOaxytMqeZmaVHLGThmyuMHnj48VULhgcDIwOSaz9/231HULiJpRCsCn/LRPL4nJpraXSXKB0IIYdarzYJYvJoYOQsq/S20nF1cGe4kVYozhA5xkjqaazPZ3nGxZjjHgj3H8KUvBbOUYQqWHr0qe67ndY+9kghz4mU4+lVF7TY6toxbKO4iEWB+2cIv0GTVV85uI9rXPAPSHgfXr+VVR6VZ4DMZZm/faQnHyouG0iiiyrA59TXNnONANuqQn7IbV+PJNGr2ufs3f2i3NuZbC6iZjsxvDK2MjNCMn2oSPxMxCqPUnpST9KjJa6lpOnxklrWy3OfUuxz/D+NMcXEsk/t4FObPrCkeqaX2z0XVyFgvVikJ4iuPA39D8jWgEowPPjqK+YEl3AAmmNrrl/bxCO31C6jQHhUnZQPkDTU/wCcm/pIzlmftCWSbND5y3QVJzxUEHU+lPNlRNmG3itl2Q09r3steXVsM3FndHKj9eMopI+IPP1rEHrXqH6E5Ge31qFsFFliYceZBB/hFLchXCi7FJwlaFlteJCweRuR0HpTSa8Fxb+EjPr50F2vsYLXV7hIV2qCCB6ZpJJI6AbWI+dZbia8clqx4moyRN3QYZ/eJxijZtaijhw8is5HVayQzIxZ2JNFaNZxXur2ttNuEcsgDbTziu6WGWY23Ym1l1C8OpSKVt4siEH9dumfgPz+Fea9sdT/AMV7VajdhsxiXuo/9qeEfXBPzr2rUWGl9mbx7JVj9ntJDEAOFwpxXzunQc5+NaXGgoIyM03klbCkkwai8hDHDEVAHiot1ptvRTR//9k="
+                        alt="">
+                    <ion-label style="white-space: pre-wrap; font-size: 1.5rem; margin-left: 1rem;">Trump diz que China
+                        quer fazer acordo e que espera ligação: 'Vai acontecer'</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-button color="secondary">Saiba Mais</ion-button>
+                </ion-item>
+            </ion-card>
         </ion-col>
     </ion-row>
 
+
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-title>Copyright &copy;</ion-title>
+    </ion-toolbar>
+</ion-footer>

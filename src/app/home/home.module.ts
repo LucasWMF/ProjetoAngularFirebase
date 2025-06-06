@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { HeaderModule } from '../shared/components/header/header.module';
+import { FooterModule } from '../shared/components/footer/footer.module';
+import { SideMenuModule } from '../shared/components/side-menu/side-menu.module';
 
 
 @NgModule({
@@ -12,7 +15,10 @@ import { HomePageRoutingModule } from './home-routing.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    HeaderModule,
+    FooterModule,
+    SideMenuModule
   ],
   declarations: [HomePage]
 })

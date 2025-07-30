@@ -12,17 +12,25 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
-  pokemon:any = {
-    name: null,
-    power: null
-  };
+  clientes: any = [];
 
   constructor(
     public crudService: CrudService
-   ){ }
-  
-  enviar(){
-    this.crudService.insert(this.pokemon, 'pokemons')
+  ) {
+    this.getClient();
   }
-  
+
+  getClient() {
+    fetch('http://127.0.0.1:8000/api/cliente')
+      .then(resp => resp.json())
+      .then(resp => {
+        console.log(resp);
+        this.clientes = resp;
+      });
+  }
+
+  // enviar() {
+  //   this.crudService.insert(this.pokemon, 'pokemons')
+  // }
+
 }

@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>Meu Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card *ngIf="user">
+    <ion-card-header>
+      <ion-card-title>{{ user.name }}</ion-card-title>
+      <ion-card-subtitle>{{ user.email }}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-item>
+    <ion-textarea placeholder="Escreva uma nova postagem..." [(ngModel)]="newPost"></ion-textarea>
+  </ion-item>
+  <ion-button expand="block" (click)="createPost()">Postar</ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let post of posts">
+      {{ post.content }}
+    </ion-item>
+  </ion-list>
+</ion-content>

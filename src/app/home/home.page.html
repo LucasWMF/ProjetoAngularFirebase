@@ -1,35 +1,16 @@
-<ion-content [fullscreen]="true">
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Feed</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-
-        <ion-row class="ion-justify-content-center">
-            <ion-col size="6">
-
-                <ion-item>
-                    <ion-input label="Nome Completo" type="text" [(ngModel)]="this.usuario.name"></ion-input>
-                </ion-item>
-
-                <ion-item>
-                    <ion-input label="E-mail" type="text" [(ngModel)]="this.usuario.email"></ion-input>
-                </ion-item>
-
-                <ion-item>
-                    <ion-input label="Senha" type="text" [(ngModel)]="this.usuario.password"></ion-input>
-                </ion-item>
-
-                <ion-item>
-                    <ion-input label="Confirmar Senha" type="text"
-                        [(ngModel)]="this.usuario.password_confirmation"></ion-input>
-                </ion-item>
-
-                <ion-item>
-                    <ion-button (click)="this.cadastrarUsuario()">Cadastrar-se</ion-button>
-                </ion-item>
-            </ion-col>
-        </ion-row>
-
-        {{ this.usuario.name }}
-        {{ this.usuario.email }}
-        {{ this.usuario.password }}
-        {{ this.usuario.password_confirmation }}
-
-    </ion-content>
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let post of posts">
+      <ion-label>
+        <h2>{{ post.user.name }}</h2>
+        <p>{{ post.content }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

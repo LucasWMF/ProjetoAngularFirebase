@@ -1,78 +1,58 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from "rxjs";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  isLoading: boolean = false;
+  private readonly baseUrl = 'http://127.0.0.1:8000/api'; // produção
+  // private readonly baseUrl = 'http://127.0.0.1:agora/'; // desenvolvimento
+
+  isLoading = false;
   handlerMessage = '';
   roleMessage = '';
 
-  constructor(
-    private http: HttpClient
-  ) {}
+  constructor(private http: HttpClient) {}
 
-  // produção
-  URL = 'https://us-central1-projetoexemplo-e640c.cloudfunctions.net/app';
-
-  // desenvolvimento
-  //URL = 'http://127.0.0.1:5001/lionsclube-5885a.cloudfunctions.net/app';
-    
-  data: any;
-
-  //A ideia aqui é que as funções abaixo sejam o início para operações básicas
-  //pode-se implementar outros services ou incluir novas funções junto a este se necessário
-  //TODO: Lembrar de fazer verificações de segurança no endpoint
-  //TODO: Lembrar de aplicar canActivated nas rotas
+  // headers padrão
+  private jsonHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   /**
-   * Cria um novo documento dentro de uma collection
-   * @param endpoint - endereço da API para execução. Ex: /create-collection/nome-collection
-   * @param data - dados dos formulário/json a serem inseridos no documento
-   * @returns Observable<any> - retorna uma observable para subscrição com response ok 200 ou erro
+   * POST - Cria um novo registro
+   * @param endpoint - ex: "users"
+   * @param data - objeto a ser enviado
    */
-	post(endpoint: string, data: any): Observable<any> {
-    const headers = { 'content-type': 'application/json'};
-    const serialized = JSON.stringify(data);
-
-    return this.http.post(`${this.URL}/${endpoint}`, serialized, {'headers':headers});
+  post<T>(endpoint: string, data: any): Observable<T> {
+    return this.http.post<T>(`${this.baseUrl}/${endpoint}`, data, {
+      headers: this.jsonHeaders,
+    });
   }
 
   /**
-   * Atualiza os dados de um documento da collection especificada
-   * @param endpoint - endereço da API para execução. Ex: /nome-collection/update/document-id
-   * @param data - dados dos formulário/json a serem atualizados no documento
-   * @returns Observable<any> - retorna uma observable para subscrição com response ok 200 ou erro
+   * PUT - Atualiza um registro
+   * @param endpoint - ex: "users/1"
+   * @param data - objeto atualizado
    */
-  put(endpoint: string, data: any): Observable<any> {
-    const headers = { 'content-type': 'application/json'};
-    const serialized = JSON.stringify(data);
-
-    return this.http.put(`${this.URL}/${endpoint}`, serialized, {'headers':headers});
+  put<T>(endpoint: string, data: any): Observable<T> {
+    return this.http.put<T>(`${this.baseUrl}/${endpoint}`, data, {
+      headers: this.jsonHeaders,
+    });
   }
 
   /**
-   * Deleta um documento da collection especificada
-   * @param endpoint - endereço da API para execução. Ex: /nome-collection/delete/document-id
-   * @returns Observable<any> - retorna uma observable para subscrição com response ok 200 ou erro
+   * DELETE - Remove um registro
+   * @param endpoint - ex: "users/1"
    */
-  delete(endpoint: string): Observable<any> {
-    return this.http.delete(`${this.URL}/${endpoint}`);
+  delete<T>(endpoint: string): Observable<T> {
+    return this.http.delete<T>(`${this.baseUrl}/${endpoint}`);
   }
 
   /**
-   * Exibe um documento se contiver id, ou exibe todos os documentos se o id estiver omisso
-   * @param endpoint - carrega um único documento. Ex: /nome-collection/read/document-id ou
-   * @param endpoint - carrega todos os documentos da collection. Ex: /nome-collection/read
-   * @returns Observable<any> - retorna uma observable para subscrição com response ok 200 ou erro
+   * GET - Busca dados (um ou todos)
+   * @param endpoint - ex: "users" ou "users/1"
    */
-  get(endpoint: string): Observable<any> {
-    return this.http.get(`${this.URL}/${endpoint}`);
+  get<T>(endpoint: string): Observable<T> {
+    return this.http.get<T>(`${this.baseUrl}/${endpoint}`);
   }
-
-    
-
 }
-

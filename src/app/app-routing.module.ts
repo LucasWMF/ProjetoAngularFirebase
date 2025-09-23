@@ -1,17 +1,19 @@
-import { NgModule } from "@angular/core";
-import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HomePage } from './home/home-routing.module';
+import { ProfilePage } from './profile/profile-routing.module';
+import { LoginPage } from './login/login-routing.module';
+import { RegisterPage } from './register/register-routing.module';
 
 const routes: Routes = [
-  { path: "", redirectTo: "login", pathMatch: "full" }, // redireciona a raiz para login
-  { path: "login", component: LoginPage },
-  { path: "home", component: HomePage },
-  { path: "profile", component: ProfilePage },
+  { path: '', component: HomePage },
+  { path: 'profile', component: ProfilePage },
+  { path: 'login', component: LoginPage },
+  { path: 'registrar', component: RegisterPage },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
-  ],
-  exports: [RouterModule],
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -54,73 +54,66 @@ export class ProfilePage implements OnInit {
   }
 
   loadPosts() {
-    const userId = localStorage.getItem("user_id"); // pega id do usuário logado
-
-    this.postService.getPosts().subscribe({
-      next: (data) => {
-        this.posts = (data || []).filter(
-          (p) => String(p.user_id) === String(userId)
-        );
-      },
-      error: (err) => console.error("Erro ao carregar posts", err),
+    this.postService.getPosts().subscribe((posts) => {
+      this.posts = posts; // ← é aqui que você popula
     });
   }
 
-  salvarAlteracoes() {
-    if (!this.user) return;
+  // salvarAlteracoes() {
+  //   if (!this.user) return;
 
-    const payload: any = {
-      name: this.user.name,
-      email: this.user.email,
-    };
+  //   const payload: any = {
+  //     name: this.user.name,
+  //     email: this.user.email,
+  //   };
 
-    this.api.put(`usuario/${this.user.id}`, payload).subscribe({
-      next: (resp: any) => {
-        this.user = resp.user;
-        this.editarPerfil = false;
-        this.showToast("Alterações feitas com sucesso! :)");
-      },
-      error: () => {
-        this.showToast("Erro ao salvar alterações. Tente novamente :(");
-      },
-    });
-  }
+  //   this.api.put(`usuario/${this.user.id}`, payload).subscribe({
+  //     next: (resp: any) => {
+  //       this.user = resp.user;
+  //       this.editarPerfil = false;
+  //       this.showToast("Alterações feitas com sucesso! :)");
+  //     },
+  //     error: () => {
+  //       this.showToast("Erro ao salvar alterações. Tente novamente :(");
+  //     },
+  //   });
+  // }
 
-  uploadFoto(event: any) {
-    const file = event.target.files[0];
-    if (!file) return;
+  // uploadFoto(event: any) {
+  //   const file = event.target.files[0];
+  //   if (!file) return;
 
-    if (!file.type.startsWith("image/")) {
-      this.showToast("Por favor, selecione uma imagem válida. :)");
-      return;
-    }
+  //   if (!file.type.startsWith("image/")) {
+  //     this.showToast("Por favor, selecione uma imagem válida. :)");
+  //     return;
+  //   }
 
-    if (file.size > 2 * 1024 * 1024) {
-      this.showToast("Imagem muito grande. Máximo 2MB. :(");
-      return;
-    }
+  //   if (file.size > 2 * 1024 * 1024) {
+  //     this.showToast("Imagem muito grande. Máximo 2MB. :(");
+  //     return;
+  //   }
 
-    const formData = new FormData();
-    formData.append("picture", file);
+  //   const formData = new FormData();
+  //   formData.append("picture", file);
 
-    this.api.post("usuario/foto-upload", formData).subscribe({
-      next: (resp: any) => {
-        this.user.picture = resp.picture_url.startsWith("http")
-          ? resp.picture_url
-          : this.baseUrl + resp.picture_url;
+  //   this.api.post("usuario/foto-upload", formData).subscribe({
+  //     next: (resp: any) => {
+  //       this.user.picture = resp.picture_url.startsWith("http")
+  //         ? resp.picture_url
+  //         : this.baseUrl + resp.picture_url;
 
-        this.showToast("Foto atualizada com sucesso! :)");
-      },
-      error: (err: HttpErrorResponse) => {
-        console.error("Erro ao enviar foto:", err);
-        if (err.status === 422) {
-          this.showToast("Erro: Imagem inválida ou muito grande. :(");
-        } else {
-          this.showToast("Erro ao enviar foto. Tente novamente. :(");
-        }
-      },
-    });
-  }
+  //       this.showToast("Foto atualizada com sucesso! :)");
+  //     },
+  //     error: (err: HttpErrorResponse) => {
+  //       console.error("Erro ao enviar foto:", err);
+  //       if (err.status === 422) {
+  //         this.showToast("Erro: Imagem inválida ou muito grande. :(");
+  //       } else {
+  //         this.showToast("Erro ao enviar foto. Tente novamente. :(");
+  //       }
+  //     },
+  //   });
+  // }
 
   logout() {
     this.api.post("usuario/logout", {}).subscribe({
@@ -137,5 +130,13 @@ export class ProfilePage implements OnInit {
       position: "top",
     });
     toast.present();
+  }
+
+  getRelativeTime(date: string) {
+    return this.postService.getRelativeTime(date);
+  }
+
+  getUserColorFile(name: string) {
+    return this.postService.getUserColorFile(name);
   }
 }

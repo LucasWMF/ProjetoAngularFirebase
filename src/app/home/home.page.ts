@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, NavigationEnd } from "@angular/router";
 import { ApiService } from "../shared/api.service";
+import { PostService } from "../services/post.service";
 
 @Component({
   selector: "app-home",
@@ -11,7 +12,11 @@ export class HomePage implements OnInit {
   usuarioLogado: boolean = false;
   posts: any[] = [];
 
-  constructor(private router: Router, private api: ApiService) {}
+  constructor(
+    private router: Router,
+    private api: ApiService,
+    private postService: PostService
+  ) {}
 
   ngOnInit() {
     this.verificarLogin();
@@ -31,18 +36,25 @@ export class HomePage implements OnInit {
     this.usuarioLogado = !!localStorage.getItem("token");
   }
 
-  loadPosts() {
-    this.api.get<any[]>("usuario/posts").subscribe({
-      next: (data) => {
-        // filtra apenas posts do usuário se quiser
-        this.posts = data.filter(
-          (p) => String(p.user_id) === String(localStorage.getItem("user_id"))
-        );
-      },
-      error: (err) => {
-        console.error("Erro ao carregar posts", err);
-        this.posts = [];
-      },
+  createPost(description: string, picture: string = "") {
+    this.postService.createPost(description, picture).subscribe((newPost) => {
+      // garante que this.posts já existe antes de unshift
+      if (!this.posts) this.posts = [];
+      this.posts.unshift(newPost); // ← aqui pode estar dando erro se this.posts for null
     });
+  }
+
+  loadPosts() {
+    this.postService.getPosts().subscribe((posts) => {
+      this.posts = posts; // ← é aqui que você popula
+    });
+  }
+
+  getRelativeTime(date: string) {
+    return this.postService.getRelativeTime(date);
+  }
+
+  getUserColorFile(name: string) {
+    return this.postService.getUserColorFile(name);
   }
 }

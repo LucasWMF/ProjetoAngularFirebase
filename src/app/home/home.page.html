@@ -1,21 +1,56 @@
-<ion-header>
+<ion-header id="home-header">
   <ion-toolbar color="primary">
-    <ion-title>Feed</ion-title>
-
+    <ion-title>
+      <ion-icon name="people" style="vertical-align: middle; margin-right: 8px;"></ion-icon>
+      SocialConnect
+    </ion-title>
     <ion-buttons slot="end">
       <ion-button routerLink="/login">Login</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <!-- Conteúdo da página -->
-  <ion-list>
-    <ion-item *ngFor="let post of posts">
-      <ion-label>
-        <h2>{{ post.user.name }}</h2>
-        <p>{{ post.content }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+<ion-content class="custom-content" id="home-content">
+  <div class="ion-padding">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Bem-vindo ao SocialConnect</ion-card-title>
+        <ion-card-subtitle>Conecte-se com amigos e compartilhe suas experiências</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>Faça login para postar e interagir com outros usuários.</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Feed Público</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list>
+
+          <ion-item *ngFor="let post of posts">
+            <ion-avatar slot="start">
+              <img
+                [src]="getUserColorFile(post.user.name)">
+            </ion-avatar>
+
+            <ion-label>
+              <h2>{{ post.user?.name }}</h2>
+              <p>{{ post.description }}</p>
+
+              <img *ngIf="post.picture" [src]="post.picture" class="post-image">
+              
+              <p class="post-time">
+                {{ getRelativeTime(post.created_at) }}
+              </p>
+            </ion-label>
+          </ion-item>
+          
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

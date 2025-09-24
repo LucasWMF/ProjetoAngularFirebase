@@ -1,7 +1,6 @@
-<ion-header>
+<ion-header id="posts-header">
   <ion-toolbar color="primary">
     <ion-title>Posts</ion-title>
-
     <ion-buttons slot="end">
       <ion-button routerLink="/profile">Perfil</ion-button>
       <ion-button (click)="logout()">Sair</ion-button>
@@ -9,17 +8,23 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding feed-container">
+<ion-content id="posts-content" class="custom-content ion-padding feed-container">
 
-  <!-- Form de novo post -->
-  <ion-card class="post-form">
+  <!-- Formulário de novo post -->
+  <ion-card class="post-card post-form">
+    <ion-card-header>
+      <ion-card-title>Criar Nova Postagem</ion-card-title>
+    </ion-card-header>
+
     <ion-card-content>
       <ion-item>
-        <ion-input [(ngModel)]="newPostDescription" placeholder="Escreva algo..."></ion-input>
+        <ion-textarea [(ngModel)]="newPostDescription" placeholder="Escreva algo..." rows="3">
+        </ion-textarea>
       </ion-item>
 
       <ion-item>
-        <ion-input [(ngModel)]="newPostPicture" placeholder="Link da imagem (opcional)"></ion-input>
+        <ion-input [(ngModel)]="newPostPicture" placeholder="Link da imagem (opcional)">
+        </ion-input>
       </ion-item>
 
       <ion-button expand="block" (click)="createPost(newPostDescription, newPostPicture)">
@@ -28,23 +33,29 @@
     </ion-card-content>
   </ion-card>
 
-  <!-- Lista de posts estilo chat -->
-  <ion-list>
-    <ion-item *ngFor="let post of posts" lines="none">
-      <ion-avatar slot="start" *ngIf="post.user?.picture">
-        <img [src]="post.user.picture">
-      </ion-avatar>
+  <!-- Lista de posts -->
+  <ion-card class="post-card">
+    <ion-card-header>
+      <ion-card-title>Feed</ion-card-title>
+    </ion-card-header>
 
-      <ion-label class="post-bubble">
-        <h3>{{ post.user?.name }}</h3>
-        <p>{{ post.description }}</p>
+    <ion-list>
 
-        <img *ngIf="post.picture" [src]="post.picture" 
-             style="max-width: 100%; margin-top: 5px; border-radius: 8px;">
+      <ion-item *ngFor="let post of posts">
+        <ion-avatar slot="start">
+          <img [src]="getUserColorFile(post.user.name)">
+        </ion-avatar>
 
-        <small>{{ post.created_at | date:'short' }}</small>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+        <ion-label>
+          <h2>{{ post.user?.name }}</h2>
+          <p>{{ post.description }}</p>
 
-</ion-content>
+          <img *ngIf="post.picture" [src]="post.picture" class="post-image">
+
+          <p class="post-time">
+            {{ getRelativeTime(post.created_at) }}
+          </p>
+        </ion-label>
+      </ion-item>
+<
+    </ion-list>

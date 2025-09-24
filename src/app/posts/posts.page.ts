@@ -11,6 +11,8 @@ import { PostService } from "../services/post.service";
 export class PostsPage implements OnInit {
   posts: any[] = [];
   newPost: string = "";
+  newPostDescription: string = "";
+  newPostPicture: string = "";
 
   constructor(
     private postService: PostService,
@@ -41,5 +43,13 @@ export class PostsPage implements OnInit {
       next: () => this.router.navigate(["/login"]),
       error: () => this.router.navigate(["/login"]),
     });
+  }
+
+  getRelativeTime(date: string) {
+    return this.postService.getRelativeTime(date);
+  }
+
+  getUserColorFile(name: string) {
+    return this.postService.getUserColorFile(name);
   }
 }

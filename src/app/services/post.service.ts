@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { formatDistanceToNow, parseISO, format } from "date-fns";
 
 @Injectable({
   providedIn: "root",
@@ -31,5 +32,30 @@ export class PostService {
       { description, picture },
       { headers: this.getHeaders() }
     );
+  }
+
+  getRelativeTime(date: string): string {
+    const postDate = parseISO(date);
+    const diffInMinutes = (new Date().getTime() - postDate.getTime()) / 60000;
+
+    if (diffInMinutes > 5) {
+      // maior que 5 minutos: mostra data completa
+      return format(postDate, "dd/MM/yyyy HH:mm");
+    } else {
+      // menor que 5 minutos: tempo relativo
+      return formatDistanceToNow(postDate, { addSuffix: true });
+    }
+  }
+  
+  getUserColorFile(name: string): string {
+    const colorFiles = [
+      "roxo.png",
+      "azul.png",
+      "amarelo.png",
+      "laranja.png",
+      "verde.png",
+    ];
+    const index = name.length % colorFiles.length;
+    return `assets/img/${colorFiles[index]}`;
   }
 }

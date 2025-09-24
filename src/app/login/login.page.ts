@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { ApiService } from "../shared/api.service";
 import { ToastController } from "@ionic/angular";
+import { PostService } from "../services/post.service";
 
 @Component({
   selector: "app-login",
@@ -21,7 +22,8 @@ export class LoginPage {
   constructor(
     private api: ApiService,
     private router: Router,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private postService: PostService
   ) {}
 
   async showToast(msg: string, color: string = "primary") {

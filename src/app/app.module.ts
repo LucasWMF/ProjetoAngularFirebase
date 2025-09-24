@@ -13,6 +13,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { HttpClientModule } from '@angular/common/http';
+// import { ProfilePipe } from './profile.pipe';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,13 +22,6 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    
-    //importação de funções para que o firebase funcione no projeto
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), 
-    provideAuth(() => getAuth()), 
-    provideFirestore(() => getFirestore()), 
-    provideStorage(() => getStorage())
-    
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

@@ -1,13 +1,32 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Perfil</ion-title>
+
+    <ion-buttons slot="end">
+      <!-- Botão Perfil -->
+      <ion-button routerLink="/posts">Posts</ion-button>
+
+      <!-- Botão Sair -->
+      <ion-button (click)="logout()">Sair</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="user">
+    <ion-avatar>
+      <img [src]="user.picture || 'assets/icon/favicon.png'">
+    </ion-avatar>
+    <h2>{{ user.name }}</h2>
+    <p>{{ user.email }}</p>
+
+    <h3>Minhas postagens</h3>
+    <ion-list *ngFor="let post of posts">
+      <ion-item>
+        <ion-label>{{ post.description }}</ion-label>
+        <img *ngIf="post.picture" [src]="post.picture" style="width: 50px; border-radius: 5px;">
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

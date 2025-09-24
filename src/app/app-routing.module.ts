@@ -1,15 +1,27 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomePage } from './home/home-routing.module';
-import { ProfilePage } from './profile/profile-routing.module';
-import { LoginPage } from './login/login-routing.module';
-import { RegisterPage } from './register/register-routing.module';
+import { NgModule } from "@angular/core";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { LoginPage } from "./login/login.page";
+import { HomePage } from "./home/home.page";
+import { ProfilePage } from "./profile/profile.page";
 
 const routes: Routes = [
-  { path: '', component: HomePage },
-  { path: 'profile', component: ProfilePage },
-  { path: 'login', component: LoginPage },
-  { path: 'registrar', component: RegisterPage },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+  },
+  {
+    path: 'posts',
+    loadChildren: () => import('./posts/posts.module').then(m => m.PostsPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfilePageModule)
+  }
 ];
 
 @NgModule({

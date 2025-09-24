@@ -1,32 +1,35 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
-export interface Post {
-  id: number;
-  user_id: number;
-  content: string;
-  user_name: string;
-  created_at: string;
-}
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class PostService {
-  private baseUrl = 'http://localhost:8000/api'; // URL da sua API Laravel
+  private apiUrl = "http://127.0.0.1:8000/api/usuario";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.baseUrl}/posts`);
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem("token");
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
   }
 
-  createPost(content: string): Observable<Post> {
-    return this.http.post<Post>(`${this.baseUrl}/posts`, { content });
+  // Pega todos os posts
+  getPosts(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/posts`, {
+      headers: this.getHeaders(),
+    });
   }
 
-  getUserPosts(userId: number): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.baseUrl}/users/${userId}/posts`);
+  // Cria post (sem subscribe aqui!)
+  createPost(description: string, picture: string = ""): Observable<any> {
+    return this.http.post<any>(
+      `${this.apiUrl}/posts`,
+      { description, picture },
+      { headers: this.getHeaders() }
+    );
   }
 }

@@ -12,17 +12,6 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
-  pokemon:any = {
-    name: null,
-    power: null
-  };
 
-  constructor(
-    public crudService: CrudService
-   ){ }
-  
-  enviar(){
-    this.crudService.insert(this.pokemon, 'pokemons')
-  }
   
 }
